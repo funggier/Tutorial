@@ -1,0 +1,176 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	
+</head>
+<body>
+		<canvas id="barchart" width="800" height="450" style = "border:2px solid brown";>
+		</canvas>
+		<canvas id="spotchart" width="800" height="450" style = "border:2px solid brown";>
+		</canvas>
+		<canvas id="linechart" width="800" height="450" style = "border:2px solid brown";>
+		</canvas>
+		<script>
+		
+			var data=[  
+				['year',	'sell',		'buy'],  
+				['2004',	200,		150],  
+				['2005',	300,		200],  
+				['2006',	280,		150],
+				['2007',	200,		100],  
+				['2008',	280,		150], 
+				['2009',	290,		100],  
+				['2010',	380,		180], 
+				['2011',	450,		200]              
+			];
+		
+			var c = document.getElementById("barchart");
+			var ctx = c.getContext("2d");
+			
+			var clr1="#0D9110";
+			var clr2="#FF9600";
+			var lnclr="#DDDDDD";
+			var barclr="#000000";
+			
+			function txt(text,x1,y1){
+				ctx.font = "25px Cordia New";
+				ctx.strokeText(text,x1,y1);
+			}
+			
+				function graph(mx, my, lx, ly, wid, clr){
+				ctx.beginPath();
+				ctx.moveTo(mx, my );
+				ctx.lineTo(lx, ly );
+				ctx.lineWidth=wid;
+				ctx.strokeStyle=clr;
+				ctx.stroke();
+			}
+			
+			function spot(x,y,r,clr) {
+				ctx.beginPath();
+				ctx.arc(x,y,r, 0, 2 * Math.PI, false);
+				ctx.fillStyle = clr;
+				ctx.fill();
+			}
+			
+			function base(t1,t2) {
+				spot(670,120,5,clr1);
+				txt('Buy',680,125);
+				spot(670,140,5,clr2);
+				txt('Sell',680,145);
+			
+				txt('500',100,120);
+				txt('400',100,170);
+				txt('300',100,220);
+				txt('200',100,270);
+				txt('100',100,320);
+				txt('0',100,370);
+				
+				txt(data[1][0],170,390);
+				txt(data[2][0],230,390);
+				txt(data[3][0],290,390);
+				txt(data[4][0],350,390);
+				txt(data[5][0],410,390);
+				txt(data[6][0],470,390);
+				txt(data[7][0],530,390);
+				txt(data[8][0],590,390);
+				
+				graph(150, 370, 650, 370, 1, barclr);
+				graph(150, 320, 650, 320, 1, lnclr);
+				graph(150, 270, 650, 270, 1, lnclr);
+				graph(150, 220, 650, 220, 1, lnclr);
+				graph(150, 170, 650, 170, 1, lnclr);
+				graph(150, 120, 650, 120, 1, lnclr);
+			}
+			
+//========================================================================
+			
+			
+			txt('H e a d i n g',350,70);
+			
+			base();
+			
+			graph(180, 370, 180, 370-data[1][1]/2, 20, clr1);
+			graph(200, 370, 200, 370-data[1][2]/2, 20, clr2);
+			
+			graph(240, 370, 240, 370-data[2][1]/2, 20, clr1);
+			graph(260, 370, 260, 370-data[2][2]/2, 20, clr2);
+			
+			graph(300, 370, 300, 370-data[3][1]/2, 20, clr1);
+			graph(320, 370, 320, 370-data[3][2]/2, 20, clr2);
+			
+			graph(360, 370, 360, 370-data[4][1]/2, 20, clr1);
+			graph(380, 370, 380, 370-data[4][2]/2, 20, clr2);
+			
+			graph(420, 370, 420, 370-data[5][1]/2, 20, clr1);
+			graph(440, 370, 440, 370-data[5][2]/2, 20, clr2);
+			
+			graph(480, 370, 480, 370-data[6][1]/2, 20, clr1);
+			graph(500, 370, 500, 370-data[6][2]/2, 20, clr2);
+			
+			graph(540, 370, 540, 370-data[7][1]/2, 20, clr1);
+			graph(560, 370, 560, 370-data[7][2]/2, 20, clr2);
+						
+			graph(600, 370, 600, 370-data[8][1]/2, 20, clr1);
+			graph(620, 370, 620, 370-data[8][2]/2, 20, clr2);
+			
+
+//========================================================================
+			
+			
+			var c = document.getElementById("spotchart");
+			var ctx = c.getContext("2d");
+
+			txt('H e a d i n g',350,70);
+			
+			base();
+			
+			spot(190, 370-data[1][1]/2, 4, clr1);
+			spot(250, 370-data[2][1]/2, 4, clr1);
+			spot(310, 370-data[3][1]/2, 4, clr1);
+			spot(370, 370-data[4][1]/2, 4, clr1);
+			spot(430, 370-data[5][1]/2, 4, clr1);
+			spot(490, 370-data[6][1]/2, 4, clr1);
+			spot(550, 370-data[7][1]/2, 4, clr1);
+			spot(610, 370-data[8][1]/2, 4, clr1);
+			
+			spot(190, 370-data[1][2]/2, 4, clr2);
+			spot(250, 370-data[2][2]/2, 4, clr2);
+			spot(310, 370-data[3][2]/2, 4, clr2);
+			spot(370, 370-data[4][2]/2, 4, clr2);
+			spot(430, 370-data[5][2]/2, 4, clr2);
+			spot(490, 370-data[6][2]/2, 4, clr2);
+			spot(550, 370-data[7][2]/2, 4, clr2);
+			spot(610, 370-data[8][2]/2, 4, clr2);
+			
+			
+//========================================================================
+			
+			
+			var c = document.getElementById("linechart");
+			var ctx = c.getContext("2d");
+
+			txt('H e a d i n g',350,70);
+			
+			base();
+			
+			graph(190, 370-data[1][1]/2, 250, 370-data[2][1]/2, 2, clr1);
+			graph(250, 370-data[2][1]/2, 310, 370-data[3][1]/2, 2, clr1);
+			graph(310, 370-data[3][1]/2, 370, 370-data[4][1]/2, 2, clr1);
+			graph(370, 370-data[4][1]/2, 430, 370-data[5][1]/2, 2, clr1);
+			graph(430, 370-data[5][1]/2, 490, 370-data[6][1]/2, 2, clr1);
+			graph(490, 370-data[6][1]/2, 550, 370-data[7][1]/2, 2, clr1);
+			graph(550, 370-data[7][1]/2, 610, 370-data[8][1]/2, 2, clr1);
+			
+			graph(190, 370-data[1][2]/2, 250, 370-data[2][2]/2, 2, clr2);
+			graph(250, 370-data[2][2]/2, 310, 370-data[3][2]/2, 2, clr2);
+			graph(310, 370-data[3][2]/2, 370, 370-data[4][2]/2, 2, clr2);
+			graph(370, 370-data[4][2]/2, 430, 370-data[5][2]/2, 2, clr2);
+			graph(430, 370-data[5][2]/2, 490, 370-data[6][2]/2, 2, clr2);
+			graph(490, 370-data[6][2]/2, 550, 370-data[7][2]/2, 2, clr2);
+			graph(550, 370-data[7][2]/2, 610, 370-data[8][2]/2, 2, clr2);
+
+		</script>
+
+</body>
+</html>
